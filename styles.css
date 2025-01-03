@@ -98,7 +98,15 @@ img {
     height: 200px; /* Adjust height */
     overflow: hidden;
 }
-  
+
+#resources {
+    
+}  
+
+a {
+    color: beige;
+}
+
 footer {
     text-align: center;
     background-color: rgb(20, 20, 20);
