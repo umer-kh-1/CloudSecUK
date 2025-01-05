@@ -44,6 +44,13 @@ main {
     padding: 2em;
 }
 
+footer {
+    display: flex;
+    background-color: rgb(20, 20, 20);
+    color: beige;
+    padding: 10px;
+}
+
 #home {
     margin: 2em 0;
     text-align: center;
@@ -97,21 +104,6 @@ img {
     width: 300px; /* Adjust width */
     height: 200px; /* Adjust height */
     overflow: hidden;
-}
-
-#resources {
-    
-}  
-
-a {
-    color: beige;
-}
-
-footer {
-    text-align: center;
-    background-color: rgb(20, 20, 20);
-    color: beige;
-    padding: 10px;
 }
 
 .breadcrumb {

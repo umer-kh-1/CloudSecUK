@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>CloudSecUK</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>CloudSecUK</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="knowledgeRepo.html">Knowledge Repository</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="knowledgeRepo.html">Knowledge Repository</a></li>
+                <li class="breadcrumb-item"><a href="programming.html">Programming</a></li>
+                <li class="breadcrumb-item active" aria-current="page">CMD Prompt</li>
+            </ol>
+        </nav>
+        <section id="cmdPrompt">
+            <h4>Network utilities</h4>
+            <h5>ICMP (echo)</h5>
+            <pre class="code-block">
+                <code>
+                ping
+
+                pingpath
+                </code>
+            </pre>
+            <h5>TCP/IP reset</h5>
+            <pre class="code-block">
+                <code>
+                netsh int ip reset
+
+                netsh winsock reset
+                </code>
+            </pre>
+            <h5>FTP</h5>
+            <pre class="code-block">
+                <code>
+                ftp 209.165.200.226
+                put samplefile.txt
+                rename samplefile.txt samplefile_FTP.txt
+                get samplefile_FTP.txt
+                </code>
+            </pre>
+            <h5>Telnet</h5>
+            <pre class="code-block">
+                <code>
+                telnet [ip address]
+                </code>
+            </pre>
+            <h5>SSH</h5>
+            <pre class="code-block">
+                <code>
+                ssh -l [username] [ip address]
+                </code>
+            </pre>
+            <h4>System utilities</h4>
+            <h5>Driver utility</h5>
+            <pre class="code-block">
+                <code>
+                    pnputil.exe
+
+                    pnputil /enum-drivers # lists all non-MS packages
+                    
+                    pnputil add-driver d:\usbcam\USBCAM.inf  # adds a package that USBCAM.inf specifies.
+                    
+                    pnputil add-driver c:\drivers*.inf # adds all packages in c:\drivers
+                    
+                    pnputil /delete-driver oem0.inf /uninstall    
+                </code>
+            </pre>
+        </section>
+    </main>
+    <footer>
+        <p>All rights reserved.</p>
+    </footer>
+</body>
+</html>
