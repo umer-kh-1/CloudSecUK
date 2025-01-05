@@ -21,7 +21,7 @@ header h1 {
     padding: 0;
     font-size: 16pt;
     font-weight: 750;
-    color: darkviolet;
+    color: beige;
 }
 
 nav ul {
@@ -130,7 +130,7 @@ footer {
 
 .breadcrumb-item a {
     text-decoration: none;
-    color: beige;
+    color: #6c757d;
 }
 
 .breadcrumb-item a:hover {
@@ -140,13 +140,13 @@ footer {
 .breadcrumb-item::after {
     content: ">";
     margin-left: 0.5rem;
-    color: #6c757d;
+    color: beige;
 }
 
 .breadcrumb-item:last-child::after {
     content: "";
 }
 .breadcrumb-item.active {
-    color: #6c757d;
+    color: beige;
 }
 
