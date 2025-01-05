@@ -67,6 +67,29 @@
                 </code>
             </pre>
             <h4>System utilities</h4>
+            <h5>Disk utility</h5>
+            <pre class="code-block">
+                <code>
+                    Diskpart
+                    list disk
+                    list volume
+                    select disk
+                    select volume
+                    format fs=ntfs
+
+                    chkdsk /f
+                    chkdsk /r
+
+                    Sfc /?
+                    sfc /scannow
+                    sfc /verifyonly
+                    sfc /scanfile
+                    sfc /verifyfile
+                    sfc /offbootdir
+                    sfc /offwindir
+                    sfc /offlogfile
+                </code>
+            </pre>
             <h5>Driver utility</h5>
             <pre class="code-block">
                 <code>
@@ -79,6 +102,22 @@
                     pnputil add-driver c:\drivers*.inf # adds all packages in c:\drivers
                     
                     pnputil /delete-driver oem0.inf /uninstall    
+                </code>
+            </pre>
+            <h5>WMIC</h5>
+            <pre class="code-block">
+                <code>
+                    wmic
+
+                    wmic memphysical get maxcapacity
+
+                    wmic:root\cli>/output:c:\system.txt product get name,version
+
+                    wmic path softwareLicensingService get OA3xOriginalProductKey
+
+                    wmic bios get serialnumber
+
+                    wmic > product get name > product where name =“insert name of application” call uninstall   
                 </code>
             </pre>
         </section>
