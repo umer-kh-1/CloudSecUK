@@ -1,18 +1,24 @@
+:root {
+    --primary-bg: black;
+    --primary-text: beige;
+    --secondary-bg: rgb(20, 20, 20);    
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 10px;
     line-height: 1.6;
-    background-color: black;
-    color: beige;
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
 }
 
 header {
     display: flex;
     align-items: center;
     justify-content:space-between;
-    background-color: rgb(20, 20, 20);
-    color: beige;
+    background-color: var(--secondary-bg);
+    color: var(--primary-text);
     padding: 10px;
 }
 
@@ -21,7 +27,7 @@ header h1 {
     padding: 0;
     font-size: 16pt;
     font-weight: 750;
-    color: beige;
+    color: var(--primary-text);
 }
 
 nav ul {
@@ -36,7 +42,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: beige;
+    color: var(--primary-text);
     text-decoration: none;
 }
 
@@ -47,8 +53,8 @@ main {
 footer {
     text-align: center;
     display: flex;
-    background-color: rgb(20, 20, 20);
-    color: beige;
+    background-color: var(--secondary-bg);
+    color: var(--primary-text);
     padding: 10px;
 }
 
@@ -57,7 +63,7 @@ footer {
     list-style: none;
     padding: 0;
     margin: 0;
-    background-color: rgb(20, 20, 20);
+    background-color: var(--secondary-bg);
     border-radius: 0.25rem;
     padding: 0.5rem 1rem;
 }
@@ -78,14 +84,14 @@ footer {
 .breadcrumb-item::after {
     content: ">";
     margin-left: 0.5rem;
-    color: beige;
+    color: var(--primary-text);
 }
 
 .breadcrumb-item:last-child::after {
     content: "";
 }
 .breadcrumb-item.active {
-    color: beige;
+    color: var(--primary-text);
 }
 
 #home {
@@ -135,7 +141,7 @@ footer {
     font-size: 16px;
     line-height: 1.4;
     flex-grow: 1;
-    color: beige;
+    color: var(--primary-text);
 }
 
 img {
