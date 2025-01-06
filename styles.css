@@ -1,3 +1,9 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 :root {
     --primary-bg: black;
     --primary-text: beige;
@@ -6,8 +12,6 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 10px;
     line-height: 1.6;
     background-color: var(--primary-bg);
     color: var(--primary-text);
@@ -25,7 +29,7 @@ header {
 header h1 {
     margin: 0;
     padding: 0;
-    font-size: 16pt;
+    font-size: 1.5rem;
     font-weight: 750;
     color: var(--primary-text);
 }
@@ -33,7 +37,7 @@ header h1 {
 nav ul {
     list-style: none;
     padding: 0;
-    text-align: justify;    
+    display: flex;    
 }
 
 nav ul li {
@@ -51,8 +55,9 @@ main {
 }
 
 footer {
-    text-align: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--secondary-bg);
     color: var(--primary-text);
     padding: 10px;
@@ -122,7 +127,7 @@ footer {
     justify-content: center;
     background-color: rgb(20, 20, 20);
     overflow: visible;
-    transition: 0.3s;
+    transition: 0.3s ease-in-out;
     gap: 10px;
 }
 
@@ -131,9 +136,11 @@ footer {
 }
 
 .image-list li img {
-    max-width: 100%;
-    min-width: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .image-list li .text {
@@ -142,14 +149,6 @@ footer {
     line-height: 1.4;
     flex-grow: 1;
     color: var(--primary-text);
-}
-
-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .image-container {
