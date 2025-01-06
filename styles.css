@@ -57,7 +57,7 @@ nav ul li a {
 }
 
 main {
-    margin: 1rem;
+    margin: 0.5rem;
     padding: 1rem;
 }
 
@@ -163,6 +163,6 @@ main {
 .column {
     flex: 1;
     padding: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid --secondary-bg;
     box-sizing: border-box;
 }
