@@ -57,6 +57,7 @@ nav ul li a {
 }
 
 main {
+    margin: 1rem;
     padding: 1rem;
 }
 
@@ -151,3 +152,17 @@ main {
     overflow: hidden;
 }
 
+#resources {
+    margin: 2em, 0;
+}
+
+.container {
+    display: flex;
+    gap: 1rem;
+}
+.column {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
