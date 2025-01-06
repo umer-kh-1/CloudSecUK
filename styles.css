@@ -17,18 +17,24 @@ body {
     color: var(--primary-text);
 }
 
-header {
+header, footer {
     display: flex;
     align-items: center;
-    justify-content:space-between;
     background-color: var(--secondary-bg);
     color: var(--primary-text);
-    padding: 10px;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+header {
+    justify-content: space-between;
+}
+
+footer {
+    justify-content: center;
 }
 
 header h1 {
-    margin: 0;
-    padding: 0;
     font-size: 1.5rem;
     font-weight: 750;
     color: var(--primary-text);
@@ -36,8 +42,8 @@ header h1 {
 
 nav ul {
     list-style: none;
-    padding: 0;
-    display: flex;    
+    display: flex;
+    gap: 1rem;    
 }
 
 nav ul li {
@@ -51,23 +57,12 @@ nav ul li a {
 }
 
 main {
-    padding: 2em;
-}
-
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondary-bg);
-    color: var(--primary-text);
-    padding: 10px;
+    padding: 1rem;
 }
 
 .breadcrumb {
     display: flex;
     list-style: none;
-    padding: 0;
-    margin: 0;
     background-color: var(--secondary-bg);
     border-radius: 0.25rem;
     padding: 0.5rem 1rem;
@@ -79,7 +74,7 @@ footer {
 
 .breadcrumb-item a {
     text-decoration: none;
-    color: #6c757d;
+    color: #a4a2a6;
 }
 
 .breadcrumb-item a:hover {
@@ -111,7 +106,6 @@ footer {
 
 .image-list {
     list-style: none;
-    padding: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -125,7 +119,7 @@ footer {
     border-radius: 10px;
     align-items: center;
     justify-content: center;
-    background-color: rgb(20, 20, 20);
+    background-color: var(--secondary-bg);
     overflow: visible;
     transition: 0.3s ease-in-out;
     gap: 10px;
