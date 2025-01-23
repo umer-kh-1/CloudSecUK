@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>PowerShell</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="18205aed-88cf-80f9-acc6-ee5af8b44fcb" class="page sans"><header><h1 class="page-title">PowerShell</h1><p class="page-description"></p></header><div class="page-body"><hr id="18205aed-88cf-81d2-a4cc-e7757313af2f"/><h2 id="18205aed-88cf-81f4-9d3c-ff0c912a14f4" class="">Overview</h2><div id="18205aed-88cf-81c5-85f9-fd7192153c2f" class="column-list"><div id="18205aed-88cf-8148-b600-ca73005ab5e8" style="width:100%" class="column"><figure id="18205aed-88cf-81c4-8f9f-e8db53219ddc" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Overview%2018205aed88cf81c48f9fe8db53219ddc.html">Overview</a></figure><figure id="18205aed-88cf-81cf-a1c3-da4e9fff0921" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Profiles%2018205aed88cf81cfa1c3da4e9fff0921.html">Profiles</a></figure><figure id="18205aed-88cf-816a-a978-d4f448e625ea" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Scope%2018205aed88cf816aa978d4f448e625ea.html">Scope</a></figure><figure id="18205aed-88cf-8119-ba33-ece0bdafc1ae" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Pipeline%2018205aed88cf8119ba33ece0bdafc1ae.html">Pipeline</a></figure><figure id="18205aed-88cf-813c-b748-fac8b4099ff1" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Modules%2018205aed88cf813cb748fac8b4099ff1.html">Modules</a></figure><figure id="18205aed-88cf-81db-ba85-c795371c49e8" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Scripting%2018205aed88cf81dbba85c795371c49e8.html">Scripting</a></figure></div><div id="18205aed-88cf-8165-bd13-fe83e446506d" style="width:100%" class="column"><figure id="18205aed-88cf-81f5-ad90-d486f28fdd4d" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Variables%2018205aed88cf81f5ad90d486f28fdd4d.html">Variables</a></figure><figure id="18205aed-88cf-8147-be77-e2042a5253be" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Parameters%2018205aed88cf8147be77e2042a5253be.html">Parameters</a></figure><figure id="18205aed-88cf-819b-972c-c8301b8c7e60" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Operators%2018205aed88cf819b972cc8301b8c7e60.html">Operators</a></figure><figure id="18205aed-88cf-818a-b483-c503c5208bd2" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Flow%20Control%2018205aed88cf818ab483c503c5208bd2.html">Flow Control</a></figure><figure id="18205aed-88cf-81de-b68f-d1876f9744de" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Error%20Handling%2018205aed88cf81deb68fd1876f9744de.html">Error Handling</a></figure><figure id="18205aed-88cf-8135-a230-fe4df71bced0" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Arrays%2018205aed88cf8135a230fe4df71bced0.html">Arrays</a></figure><figure id="18205aed-88cf-811e-83f6-cc09d9b39b09" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Hash%20Tables%2018205aed88cf811e83f6cc09d9b39b09.html">Hash Tables</a></figure><figure id="18205aed-88cf-81fd-b656-c2b6513f1f7f" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Import%20Export%2018205aed88cf81fdb656c2b6513f1f7f.html">Import \ Export</a></figure></div></div><hr id="18205aed-88cf-81ed-a4a2-dbe923fac0a8"/><h2 id="18205aed-88cf-8173-93dc-daef070cc668" class="block-color-blue"><mark class="highlight-default">Useful cmdlets</mark></h2><div id="18205aed-88cf-815a-a90a-e5598c0c4482" class="column-list"><div id="18205aed-88cf-81c9-86cc-e3de51b2667f" style="width:100%" class="column"><figure id="18205aed-88cf-8190-b5b2-ce1a6d384b82" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Get-Command%2018205aed88cf8190b5b2ce1a6d384b82.html">Get-Command</a></figure><figure id="18205aed-88cf-81a1-aa38-e3301b64c819" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Get-Help%2018205aed88cf81a1aa38e3301b64c819.html">Get-Help</a></figure><figure id="18205aed-88cf-8114-9ece-c625c20e8364" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Get-Member%2018205aed88cf81149ecec625c20e8364.html">Get-Member</a></figure><figure id="18205aed-88cf-816d-9ef7-f46e2ad29bd7" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/()%20GetType%2018205aed88cf816d9ef7f46e2ad29bd7.html">().GetType</a></figure><figure id="18205aed-88cf-81ac-823f-f57fce95d268" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Get-Content%2018205aed88cf81ac823ff57fce95d268.html">Get-Content</a></figure></div><div id="18205aed-88cf-81db-bcd8-e7dfabe54efc" style="width:100%" class="column"><figure id="18205aed-88cf-811f-8bec-f9ca3cf39928" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Where-Object%2018205aed88cf811f8becf9ca3cf39928.html">Where-Object</a></figure><figure id="18205aed-88cf-81dc-9054-de85e39e7af3" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/-Filter%2018205aed88cf81dc9054de85e39e7af3.html">-Filter</a></figure><figure id="18205aed-88cf-81ee-b87f-e5a87a6ea4c8" class="link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Invoke-WebRequest%2018205aed88cf81eeb87fe5a87a6ea4c8.html">Invoke-WebRequest</a></figure></div></div><hr id="18205aed-88cf-814b-8a5b-f904e43dc8d9"/><h2 id="18205aed-88cf-8185-94e4-f8d74766ac3b" class="block-color-blue"><mark class="highlight-default">Modules</mark></h2><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong><span style="border-bottom:0.05em solid">Windows OS</span></strong></summary><div class="indented"><figure id="18205aed-88cf-8122-82dd-ebb828a27118" class="block-color-red link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/PSWindowsUpdate%2018205aed88cf812282ddebb828a27118.html">PSWindowsUpdate</a></figure><figure id="18205aed-88cf-815b-9980-e1d05d5181b2" class="block-color-red link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Microsoft%20PowerShell%20Management%2018205aed88cf815b9980e1d05d5181b2.html">Microsoft.PowerShell.Management</a></figure><figure id="18205aed-88cf-8191-9579-e2abceac76a7" class="block-color-red link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Microsoft%20PowerShell%20Security%2018205aed88cf81919579e2abceac76a7.html">Microsoft.PowerShell.Security</a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong><span style="border-bottom:0.05em solid">M365</span></strong></summary><div class="indented"><div id="18205aed-88cf-8063-bfd0-e2801ccbf605" class="column-list"><div id="18205aed-88cf-803a-9484-eea6aea85563" style="width:100%" class="column"><figure id="18205aed-88cf-81da-a446-ff392350b97c" class="block-color-blue link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/ExchangeOnlineManagement%2018205aed88cf81daa446ff392350b97c.html">ExchangeOnlineManagement</a></figure><figure id="18205aed-88cf-81f0-bbdf-fcd49ad867f1" class="block-color-blue link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/MicrosoftTeams%2018205aed88cf81f0bbdffcd49ad867f1.html">MicrosoftTeams</a></figure><figure id="18205aed-88cf-81a9-aa71-e5a8fc5eaf8e" class="block-color-blue link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Microsoft%20Online%20SharePoint%20PowerShell%2018205aed88cf81a9aa71e5a8fc5eaf8e.html">Microsoft.Online.SharePoint.PowerShell</a></figure><figure id="18205aed-88cf-81a8-8ad6-e145be231b97" class="block-color-blue link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/IPPSSession%20(MS%20Security%20&amp;%20Compliance)%2018205aed88cf81a88ad6e145be231b97.html">IPPSSession (MS Security &amp; Compliance)</a></figure><figure id="18205aed-88cf-818f-9814-d5d1396f9344" class="block-color-blue link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Microsoft%20PowerApps%20Administration%20PowerShell%2018205aed88cf818f9814d5d1396f9344.html">Microsoft.PowerApps.Administration.PowerShell</a></figure></div><div id="18205aed-88cf-80f9-9b31-d8501e0c5b16" style="width:62.5%" class="column"><figure class="block-color-blue callout" style="white-space:pre-wrap;display:flex" id="18205aed-88cf-816e-af31-c2c57743849d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="18205aed-88cf-8128-83fd-d3999f2acf3b" class="">Microsoft 365 groups are managed by cmdlets that are a part of ExchangeOnlineManagement, because these groups include a mailbox. </p></div></figure></div></div></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong><span style="border-bottom:0.05em solid">Identity &amp; Access</span></strong></summary><div class="indented"><div id="18205aed-88cf-802b-8cee-cd82b0da7213" class="column-list"><div id="18205aed-88cf-80af-8a16-efd8d2da4435" style="width:100%" class="column"><figure id="18205aed-88cf-81a4-a0a6-ca0d86f74114" class="block-color-purple link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/ActiveDirectory%2018205aed88cf81a4a0a6ca0d86f74114.html">ActiveDirectory</a></figure><figure id="18205aed-88cf-81cc-b99d-fb5ba50ca5c3" class="block-color-purple link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/AzureAD%20(Azure%20AD%20PowerShell%20for%20Graph%20module)%2018205aed88cf81ccb99dfb5ba50ca5c3.html">AzureAD (Azure AD PowerShell for Graph module)</a></figure><figure id="18205aed-88cf-814e-bcc6-c740eaefb0f6" class="block-color-purple link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/MSOnline%20(Azure%20AD%20module%20for%20Windows%20PowerShell)%2018205aed88cf814ebcc6c740eaefb0f6.html">MSOnline (Azure AD module for Windows PowerShell)</a></figure><figure id="18205aed-88cf-81aa-b781-cbfd1bdb8ac4" class="block-color-purple link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Microsoft%20Graph%20(Microsoft%20Graph%20PowerShell%20SDK)%2018205aed88cf81aab781cbfd1bdb8ac4.html">Microsoft.Graph (Microsoft Graph PowerShell SDK)</a></figure><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="18205aed-88cf-80e2-926c-f444909538cc"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="18205aed-88cf-818d-8c8b-c3c7cf0be71e" class=""><strong>Azure AD Graph API </strong>(not supported after 2022)<strong><br/>Microsoft Graph API <br/></strong>(web-based API)</p></div></figure></div><div id="18205aed-88cf-8001-93ea-e6acee3d898e" style="width:100%" class="column"><figure class="block-color-purple callout" style="white-space:pre-wrap;display:flex" id="18205aed-88cf-81c2-b926-f6e62571654c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><ul id="18205aed-88cf-814c-bd27-e9ebfb3eb9b8" class="block-color-purple bulleted-list"><li style="list-style-type:disc">Manage Microsoft 365 by using the Azure AD PowerShell for Graph (AzureAD) module or the Microsoft Azure Active Directory module for Windows PowerShell (MSOnline) module.</li></ul><ul id="18205aed-88cf-81a9-a571-fab6a26529f9" class="block-color-purple bulleted-list"><li style="list-style-type:disc">Manage users in Microsoft 365 by using both Msol and AzureAD cmdlets.</li></ul></div></figure></div></div></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong><span style="border-bottom:0.05em solid">Networking</span></strong></summary><div class="indented"><figure id="18205aed-88cf-81aa-a0b0-fd21b2a87395" class="block-color-teal link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/NetTCPIP%2018205aed88cf81aaa0b0fd21b2a87395.html">NetTCPIP</a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong><span style="border-bottom:0.05em solid">Windows Server</span></strong></summary><div class="indented"><figure id="18205aed-88cf-8192-bdd7-e51338746f6a" class="block-color-yellow link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/Group%20Policy%2018205aed88cf8192bdd7e51338746f6a.html">Group Policy</a></figure><figure id="18205aed-88cf-817a-b9b9-c9540a1f0f8b" class="block-color-yellow link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/IISAdministration%2018205aed88cf817ab9b9c9540a1f0f8b.html">IISAdministration</a></figure><figure id="18205aed-88cf-8178-bef5-d40e0ae43bec" class="block-color-yellow link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/ServerManager%2018205aed88cf8178bef5d40e0ae43bec.html">ServerManager</a></figure></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong><span style="border-bottom:0.05em solid">Other</span></strong></summary><div class="indented"><figure id="18205aed-88cf-8187-afda-da5a3d032ca8" class="block-color-gray link-to-page"><a href="PowerShell%2018205aed88cf80f9acc6ee5af8b44fcb/PSNotion%2018205aed88cf8187afdada5a3d032ca8.html">PSNotion</a></figure><p id="18205aed-88cf-81d0-a432-cacab28b5088" class="block-color-default_background">
+</p></div></details><p id="18205aed-88cf-80fc-94ff-f6c8b11e8399" class="">
+</p><hr id="18205aed-88cf-8136-afa4-da0ca008d9d7"/><div id="18205aed-88cf-8117-b64b-f7fa6e616869" class="column-list"><div id="18205aed-88cf-81c8-ba0a-f2149e1e27d4" style="width:56.25%" class="column"><h3 id="18205aed-88cf-81df-b769-ef1b16f57b35" class=""><mark class="highlight-default"><strong><span style="border-bottom:0.05em solid">Azure Cloud Shell</span></strong></mark></h3><p id="18205aed-88cf-8146-8b2d-f77f12d30cc1" class="block-color-orange"><mark class="highlight-default"><a href="https://aka.ms/overview-of-azure-cloud-shell-2">https://aka.ms/overview-of-azure-cloud-shell-2</a></mark></p></div><div id="18205aed-88cf-8153-bb78-f7ee2e474bb4" style="width:43.75%" class="column"><figure id="18205aed-88cf-81a0-b703-c5a2fe40c6b5"><a href="https://www.powershellgallery.com/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">PowerShell Gallery<br/>        | Home<br/></div><div class="bookmark-description">The central repository for sharing and acquiring PowerShell code including PowerShell modules, scripts, and DSC resources.</div></div><div class="bookmark-href"><img src="https://www.powershellgallery.com/favicon.ico" class="icon bookmark-icon"/>https://www.powershellgallery.com/</div></div></a></figure></div></div><p id="18205aed-88cf-81a9-8f8d-d13c3fe0e7ed" class="">
+</p><hr id="18205aed-88cf-8115-b259-dacc12403b3d"/><p id="18205aed-88cf-810d-bd53-d0e5001e5f97" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
