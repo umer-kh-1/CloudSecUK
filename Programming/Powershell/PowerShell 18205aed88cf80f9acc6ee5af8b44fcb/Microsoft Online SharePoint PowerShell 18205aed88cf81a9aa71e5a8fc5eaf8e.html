@@ -1,0 +1,715 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Microsoft.Online.SharePoint.PowerShell</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="18205aed-88cf-81a9-aa71-e5a8fc5eaf8e" class="page sans"><header><h1 class="page-title">Microsoft.Online.SharePoint.PowerShell</h1><p class="page-description"></p></header><div class="page-body"><hr id="18305aed-88cf-8079-a724-dde7c89a94bb"/><p id="18305aed-88cf-804c-9676-d4506c4badbf" class="">
+</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="18205aed-88cf-8138-a8b1-cf3a92af4f31" class="code"><code class="language-PowerShell" style="white-space:pre-wrap;word-break:break-all">Install-Module -Name Microsoft.Online.SharePoint.PowerShell
+
+Update-Module -Name Microsoft.Online.SharePoint.PowerShell   ## must be updated manually</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="18205aed-88cf-81b9-9e29-fe29f9ec0bfa" class="code"><code class="language-PowerShell" style="white-space:pre-wrap;word-break:break-all">Connect-SPOService -Url https://adatum-admin.sharepoint.com   ## requires SharePoint Admin or Global Admin permissions</code></pre><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="18205aed-88cf-817b-b5e1-c37f29b822e7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="18205aed-88cf-81e0-b91a-f0658623c405" class=""> <strong>SharePoint Online instance</strong>: If your Microsoft 365 tenant name is adatum.onmicrosoft.com, then the URL for administering SharePoint Online is adatum-admin.sharepoint.com (can be found in SharePoint admin center).</p></div></figure><hr id="18205aed-88cf-81b5-9832-f9f49e5f3049"/><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"> Groups</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="18205aed-88cf-8118-8391-ea1495a4f951" class="code"><code class="language-PowerShell" style="white-space:pre-wrap;word-break:break-all">New-SPOSiteGroup -Group MarketingUsers -PermissionLevels Read -Site https://adatum.sharepoint.com/sites/Marketing
+
+Set-SPOSiteGroup -Site https://adatum.sharepoint.com/sites/Marketing -Group MarketingUsers -PermissionLevelsToAdd Contribute
+
+Get-SPOSiteGroup -Site https://adatum.sharepoint.com/sites/Marketing</code></pre><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="18205aed-88cf-8133-a9dd-e7d129105ace"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="18205aed-88cf-81d5-b30f-d56d8144c99f" class="">You can also add security groups from Microsoft Entra ID as members of SharePoint groups by using the <strong>Add-SPOUser</strong> cmdlet.</p></div></figure><ul id="18205aed-88cf-8147-be3a-f6578e1959d9" class="toggle"><li><details open=""><summary>Permissions available:</summary><ul id="18205aed-88cf-815b-ad43-e73f50926a24" class="bulleted-list"><li style="list-style-type:disc">Full Control</li></ul><ul id="18205aed-88cf-8191-aa6f-f041c2ddcbe3" class="bulleted-list"><li style="list-style-type:disc">Design</li></ul><ul id="18205aed-88cf-815a-b258-ca49243a6490" class="bulleted-list"><li style="list-style-type:disc">Edit</li></ul><ul id="18205aed-88cf-81e8-86a1-cddd1456a126" class="bulleted-list"><li style="list-style-type:disc">Approve</li></ul><ul id="18205aed-88cf-8143-ba36-f7c18fa20bbc" class="bulleted-list"><li style="list-style-type:disc">Contribute</li></ul><ul id="18205aed-88cf-8194-acba-ea136c4f7d00" class="bulleted-list"><li style="list-style-type:disc">Read</li></ul></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Users</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="18205aed-88cf-8191-a327-f8f6b5987944" class="code"><code class="language-PowerShell" style="white-space:pre-wrap;word-break:break-all">Add-SPOUser -Site https://adatum.sharepoint.com/sites/Marketing -Group MarketingUsers -LoginName AbbieP@adatum.com
+
+Remove-SPOUser  ## if group is not specified then user is removed from all groups in the site
+
+Get-SPOUser  ## if group is not specified then output is a list of all users in the site and their respective groups
+
+Set-SPOUser -Site https://adatum.sharepoint.com/sites/Marketing -LoginName AbbieP@adatum.com -IsSiteCollectionAdmin $true  ## set admin role</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Sites</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="18205aed-88cf-81c9-84f4-f5ceb18397f4" class="code"><code class="language-PowerShell" style="white-space:pre-wrap;word-break:break-all">New-SPOSite -Url https://adatum.sharepoint.com/sites/Marketing -Owner AbbieP@adatum.com -StorageQuota 256  ## use -template parameter to use template
+
+Get-SPOWebTemplate
+
+Get-SPOSite -Identity https://adatum.sharepoint.com/sites/Marketing | Format-List
+
+Set-SPOSite -Identity https://adatum.sharepoint.com/sites/Marketing -Title &quot;Marketing Portal&quot;
+
+Remove-SPOSite -Identity https://adatum.sharepoint.com/sites/Marketing
+
+Remove-SPODeletedSite  ## purge</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">External user sharing</summary><div class="indented"><figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="18205aed-88cf-8164-b732-d098aef8a77e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><p id="18205aed-88cf-8142-8941-fe47ec02b2ef" class="">When you configure settings for external sharing, the OneDrive settings must be the same or more restrictive than the SharePoint Online settings.</p></div></figure><table id="18205aed-88cf-810a-b178-fb430300d396" class="simple-table"><tbody><tr id="18205aed-88cf-8186-b63f-fdd9a28974aa"><td id="Ow&lt;Y" class="">Permission level</td><td id="{cRY" class="" style="width:615px">Description</td></tr><tr id="18205aed-88cf-81a4-a7bd-d3ba70ec1d4d"><td id="Ow&lt;Y" class="">Anyone</td><td id="{cRY" class="" style="width:615px">Allows users to share files and folders by using links that let anyone who has the link access the files or folders without authenticating. This setting also allows users to share sites with new and existing guests who authenticate. If you select this setting, you can restrict the <strong>Anyone</strong> links so that they expire within a specific number of days, or so that they provide only <strong>View</strong> permission.</td></tr><tr id="18205aed-88cf-81cf-b7c0-cc00c0c3aba7"><td id="Ow&lt;Y" class="">New and existing guests</td><td id="{cRY" class="" style="width:615px">Requires people who have received invitations to sign in with their work or school account (if their organization uses Microsoft 365). Alternatively, they can use a Microsoft account, or provide a code to verify their identity. Users can share with guests already in your organization&#x27;s directory, and they can send invitations to people who will be added to the directory if they sign in.</td></tr><tr id="18205aed-88cf-81f7-a0c2-c3b8093abfbe"><td id="Ow&lt;Y" class="">Existing guests</td><td id="{cRY" class="" style="width:615px">Allows sharing only with guests who are already in the directory. These guests might exist in your directory because they previously accepted sharing invitations or because they were added manually, such as through Azure business-to-business (B2B) collaboration.</td></tr><tr id="18205aed-88cf-812f-ac5b-e6c68c5f3b13"><td id="Ow&lt;Y" class="">Only people in your organization</td><td id="{cRY" class="" style="width:615px">Doesn&#x27;t allow external sharing.</td></tr></tbody></table><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="18205aed-88cf-81d3-86ff-c476909ab7c6" class="code"><code class="language-PowerShell" style="white-space:pre-wrap;word-break:break-all">Set-SPOSite -https://adatum.sharepoint.com/sites/Marketing -SharingCapability Disabled  ## disable external sharing</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="18205aed-88cf-81c9-96c9-c2d9c794738e" class="code"><code class="language-PowerShell" style="white-space:pre-wrap;word-break:break-all">## parameters ##
+-SharingCapability ExternalUserAndGuestSharing
+-SharingCapability ExternalUserSharingOnly
+-SharingCapability ExistingExternalUserSharingOnly
+-SharingCapability Disabled</code></pre><p id="18205aed-88cf-81f3-987b-df67a78f116d" class="">
+</p><p id="18205aed-88cf-81e7-8267-d35d60fa44e4" class=""><em><strong>Restrict sharing based on user domain:</strong></em></p><table id="18205aed-88cf-811c-9c3e-c6440232cecf" class="simple-table"><tbody><tr id="18205aed-88cf-81c4-81e3-ec3c48f45483"><td id="oOQq" class="">Value</td><td id="d[bF" class="" style="width:585px">Description</td></tr><tr id="18205aed-88cf-8124-9d2e-d2cbf4f10638"><td id="oOQq" class=""><strong>None</strong></td><td id="d[bF" class="" style="width:585px">Doesn&#x27;t restrict sharing by domain (default).</td></tr><tr id="18205aed-88cf-816f-885c-f96a84ea687c"><td id="oOQq" class=""><strong>AllowList</strong></td><td id="d[bF" class="" style="width:585px">Allows sharing only with external users that have an account on domains specified by using the -SharingAllowedDomainList parameter.</td></tr><tr id="18205aed-88cf-81c5-98c2-faa8c2c6d570"><td id="oOQq" class=""><strong>BlockList</strong></td><td id="d[bF" class="" style="width:585px">Allows Sharing with external users in all domains except in domains specified by using the -SharingBlockedDomainList parameter.</td></tr></tbody></table><p id="18205aed-88cf-813e-aa0d-d41206057aea" class="">
+</p><h3 id="18205aed-88cf-815f-801d-fda9e395895a" class=""><span style="border-bottom:0.05em solid">Managing sharing links</span></h3><p id="18205aed-88cf-81c8-aef0-f180b94c5109" class="">
+</p><p id="18205aed-88cf-8171-b602-cf1214c0079d" class=""><mark class="highlight-gray_background"> -DefaultLinkSharingType </mark><mark class="highlight-default_background">  </mark></p><table id="18205aed-88cf-817b-82be-d2b87b58ecd5" class="simple-table"><thead class="simple-table-header"><tr id="18205aed-88cf-8192-9257-efe8b631733b"><th id="sBsO" class="simple-table-header-color simple-table-header">Value</th><th id="ytmy" class="simple-table-header-color simple-table-header" style="width:524px">Description</th></tr></thead><tbody><tr id="18205aed-88cf-812e-9a71-ef024e1bf52e"><td id="sBsO" class=""><strong>None</strong></td><td id="ytmy" class="" style="width:524px">Uses the value set at the tenant level.</td></tr><tr id="18205aed-88cf-8196-b982-c9dc4a41fa7b"><td id="sBsO" class=""><strong>AnonymousAccess</strong></td><td id="ytmy" class="" style="width:524px">Sets the default sharing link for this site to an <strong>Anonymous Access</strong> or <strong>Anyone</strong> link.</td></tr><tr id="18205aed-88cf-816f-8aad-c379e5016735"><td id="sBsO" class=""><strong>Internal</strong></td><td id="ytmy" class="" style="width:524px">Sets the default sharing link for this site to the <strong>organization</strong> link or company shareable link.</td></tr><tr id="18205aed-88cf-8144-b20a-ca31e1c9fa4d"><td id="sBsO" class=""><strong>Direct</strong></td><td id="ytmy" class="" style="width:524px">Sets the default sharing link for this site to the <strong>Specific people</strong> link.</td></tr></tbody></table><p id="18205aed-88cf-81d4-a579-cfd724e76d79" class=""><mark class="highlight-gray_background"> -DefaultLinkPermission </mark><mark class="highlight-default_background">  </mark></p><table id="18205aed-88cf-814e-8a43-c64ba1348fe5" class="simple-table"><tbody><tr id="18205aed-88cf-8182-9d4e-d24855c9ad46"><td id="cqAV" class="" style="width:193.6666717529297px">Value</td><td id="ZqYj" class="" style="width:359.6666717529297px">Description</td></tr><tr id="18205aed-88cf-81ce-8beb-ebbb9faa8996"><td id="cqAV" class="" style="width:193.6666717529297px"><strong>None</strong></td><td id="ZqYj" class="" style="width:359.6666717529297px">Uses the value set at the tenant level.</td></tr><tr id="18205aed-88cf-81b0-9bcc-cc3dbee95d86"><td id="cqAV" class="" style="width:193.6666717529297px"><strong>View</strong></td><td id="ZqYj" class="" style="width:359.6666717529297px">Set the default value to <strong>View</strong> permissions.</td></tr><tr id="18205aed-88cf-8133-bdd7-fb3f053fef46"><td id="cqAV" class="" style="width:193.6666717529297px"><strong>Edit</strong></td><td id="ZqYj" class="" style="width:359.6666717529297px">Sets the default value to <strong>Edit</strong> permissions.</td></tr></tbody></table><p id="18205aed-88cf-81bf-a321-f371edde7cf4" class=""><em><strong>Parameters to configure link expiration for a site:</strong></em></p><table id="18205aed-88cf-8116-a7da-f34cdce3abf6" class="simple-table"><tbody><tr id="18205aed-88cf-8154-9bf1-c6ee5d9a7504"><td id="T;`~" class="" style="width:325px">Parameter</td><td id="WmvH" class="" style="width:453px">Description</td></tr><tr id="18205aed-88cf-814f-807e-e727a9a63415"><td id="T;`~" class="" style="width:325px">-OverrideTenantAnonymousLinkExpirationPolicy</td><td id="WmvH" class="" style="width:453px">To set an expiration time for anonymous links at the site level, set this value to <code>$true</code>. When set to <code>$false</code>, anonymous link expiration settings from the tenant level are used.</td></tr><tr id="18205aed-88cf-818a-a079-fd7951d83f23"><td id="T;`~" class="" style="width:325px">-AnonymousLinkExpirationInDays</td><td id="WmvH" class="" style="width:453px">This sets the number of days that an anonymous link is valid.</td></tr><tr id="18205aed-88cf-8170-bfc7-ed4da0231d29"><td id="T;`~" class="" style="width:325px">-OverrideTenantExternalUserExpirationPolicy</td><td id="WmvH" class="" style="width:453px">To set an expiration time for external user links at the site level, set this value to <code>$true</code>. When set to <code>$false</code>, external user link expiration settings from the tenant level are used.</td></tr><tr id="18205aed-88cf-8128-bacd-d8b931017a35"><td id="T;`~" class="" style="width:325px">-ExternalUserExpirationInDays</td><td id="WmvH" class="" style="width:453px">This sets the number of days that an external user link is valid.</td></tr></tbody></table></div></details><p id="18205aed-88cf-81c7-a05a-d587e80220d5" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
